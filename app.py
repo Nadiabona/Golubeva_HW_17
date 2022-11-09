@@ -35,13 +35,13 @@ movies_ns = api.namespace("movies")
 directors_ns = api.namespace("directors")
 genres_ns = api.namespace("genres")
 
-movie_schema = MovieSchema
+movie_schema = MovieSchema()
 movies_schema = MovieSchema(many = True)
 
-director_schema = DirectorSchema
+director_schema = DirectorSchema()
 directors_schema = DirectorSchema(many = True)
 
-genre_schema = GenreSchema
+genre_schema = GenreSchema()
 genres_schema = GenreSchema(many = True)
 
 @movies_ns.route("/")
@@ -71,7 +71,6 @@ class MoviesView(Resource):
 
 @movies_ns.route('/<int:uid>')
 class MovieView(Resource):
-
     def get(self, uid: int):
         movie = Movie.query.get(uid)
         if not movie:
